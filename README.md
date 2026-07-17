@@ -15,6 +15,7 @@ Kaggle Competition link: https://www.kaggle.com/competitions/playground-series-s
 - Developed a second modelling pipeline comparing LightGBM, CatBoost, RealMLP, and Random Forest using reusable scikit-learn pipelines and out-of-fold predictions.
 
 ## Project Structure
+```
 stellar-classification/
 ├── notebooks/
 │   ├── 01_eda_and_baseline_model.ipynb
@@ -22,6 +23,7 @@ stellar-classification/
 ├── src/
 ├── README.md
 └── requirements.txt
+```
 
 ## Methods and Tools
 
