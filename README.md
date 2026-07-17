@@ -1,20 +1,39 @@
 # Stellar Classification
 
-This project explores machine learning methods for classifying astronomical objects using tabular stellar observation data. The data is from Kaggle Playground Series S6E6 competitions: https://www.kaggle.com/competitions/playground-series-s6e6/overview. 
+This project develops a reproducible machine-learning pipeline for classifying astronomical objects from tabular observational data. The dataset comes from the Kaggle Playground Series S6E6 competition and contains three target classes: galaxies, quasars, and stars.
 
-## Work Done
-- Completed an EDA python notebook where additionally elementary baseline using LightGBM together with differential evolution to boost the STAR class. 
-- Progressing through a second notebook for model selection of LightGBM, CatBoost, RealMLP, and Random Forest. One of the focues of the notebook is to become comfortable with sklearn pipelines.
+The project covers exploratory data analysis, feature engineering, model comparison, out-of-fold evaluation, hyperparameter optimisation, ensembling, and submission generation. It is also being extended with SQL-based data handling and broader MLOps practices.
 
+Kaggle Competition link: https://www.kaggle.com/competitions/playground-series-s6e6/overview. 
 
-## Goal
+## Current Results
+- Built an exploratory analysis and baseline modelling notebook using LightGBM.
+- Analysed class imbalance, feature distributions, mutual information, and grouped feature ablations.
+- Implemented circular encoding for angular variables and evaluated the contribution of positional, photometric, and redshift features.
+- Optimised class-probability adjustments using differential evolution within a leakage-resistant cross-validation procedure.
+- Achieved a Kaggle private score of 0.9635.
+- Developed a second modelling pipeline comparing LightGBM, CatBoost, RealMLP, and Random Forest using reusable scikit-learn pipelines and out-of-fold predictions.
 
-This project encompasses several goals. The first goal is to practice the end-to-end ML workflow, including exploratory data analysis, preprocessing, model selection, model evaluation and model deployment. 
+## Project Structure
+stellar-classification/
+├── notebooks/
+│   ├── 01_eda_and_baseline_model.ipynb
+│   └── 02_model_selection_stacking_and_optimization.ipynb
+├── src/
+├── README.md
+└── requirements.txt
 
-Secondarily, the dataset will be used to practice SQL, documentation, and general MLops concepts. 
+## Methods and Tools
 
-Submitting predictions to Kaggle is also part of the project, but the main focus is building a clear and reproducible workflow.
+Python, pandas, NumPy, scikit-learn, LightGBM, CatBoost, RealMLP, Random Forest, Optuna, SciPy, and Kaggle.
 
-Overall, the main goal is to build a project to showcase practical machine learning and data workflow skills.
+## Evaluation
+
+Models are evaluated using cross-validation and out-of-fold predictions. Optimisation steps that depend on model probabilities are performed on held-out predictions rather than in-sample outputs to reduce the risk of optimistic evaluation.
+
+## Planned Work
+Complete model selection and hyperparameter optimisation.
+Evaluate stacking and blending approaches.
+Refactor repeated notebook logic into reusable Python modules.
 
 
