@@ -2,5 +2,5 @@
 Early Testing/
 data/
 *.csv
-
+notebooks/catboost_info
 basic_attempt_submission.csv

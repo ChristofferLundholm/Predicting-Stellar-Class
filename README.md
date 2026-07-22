@@ -1,41 +1,56 @@
 # Stellar Classification
 
-This project develops a reproducible machine-learning pipeline for classifying astronomical objects from tabular observational data. The dataset comes from the Kaggle Playground Series S6E6 competition and contains three target classes: galaxies, quasars, and stars.
+This project develops a tabular machine-learning workflow for classifying astronomical objects as galaxies, quasars, or stars. The dataset comes from the Kaggle Playground Series S6E6 competition.
 
-The project covers exploratory data analysis, feature engineering, model comparison, out-of-fold evaluation, hyperparameter optimisation, ensembling, and submission generation. It is also being extended with SQL-based data handling and broader MLOps practices.
+The project covers exploratory data analysis, feature engineering, feature-group ablation, model comparison, out-of-fold validation, hyperparameter optimization, probability post-processing, stacking experiments, and Kaggle submission generation.
 
-Kaggle Competition link: https://www.kaggle.com/competitions/playground-series-s6e6/overview. 
+Kaggle competition: https://www.kaggle.com/competitions/playground-series-s6e6/overview
 
-## Current Results
-- Built an exploratory analysis and baseline modelling notebook using LightGBM.
-- Analysed class imbalance, feature distributions, mutual information, and grouped feature ablations.
-- Implemented circular encoding for angular variables and evaluated the contribution of positional, photometric, and redshift features.
-- Optimised class-probability adjustments using differential evolution within a leakage-resistant cross-validation procedure.
-- Achieved a Kaggle private score of 0.9635.
-- Developed a second modelling pipeline comparing LightGBM, CatBoost, RealMLP, and Random Forest using reusable scikit-learn pipelines and out-of-fold predictions.
+## Results
+
+The final selected model is a tuned LightGBM classifier with differential-evolution class probability weighting.
+
+- Public leaderboard score: 0.96741
+- Private leaderboard score: 0.96694
+- Approximate private rank: 714 / 2817
+
+A simpler LightGBM baseline with probability weighting achieved:
+
+- Public leaderboard score: 0.9643
+- Private leaderboard score: 0.9635
+
+## What This Project Demonstrates
+
+- Exploratory analysis of class imbalance, feature distributions, and class-level feature behavior.
+- Circular encoding of the angular `alpha` coordinate using sine/cosine features.
+- Feature-group ablation to compare redshift, photometric bands, positional features, synthetic categorical features, and photometric differences.
+- Reusable scikit-learn preprocessing and model pipelines.
+- Stratified out-of-fold validation for fair model comparison.
+- Model comparison across LightGBM, CatBoost, RandomForest, and RealMLP.
+- Hyperparameter optimization with Optuna.
+- Probability weighting with SciPy differential evolution to improve balanced accuracy.
+- Stacking experiments using OOF probabilities, with final model selection based on validation performance and simplicity.
 
 ## Project Structure
+
 ```
-stellar-classification/
+├── data/
 ├── notebooks/
-│   ├── 01_eda_and_baseline_model.ipynb
+│   ├── 01_eda_and_ baseline_model.ipynb
 │   └── 02_model_selection_stacking_and_optimization.ipynb
-├── src/
 ├── README.md
 └── requirements.txt
 ```
 
 ## Methods and Tools
 
-Python, pandas, NumPy, scikit-learn, LightGBM, CatBoost, RealMLP, Random Forest, Optuna, SciPy, and Kaggle.
+Python, pandas, NumPy, scikit-learn, LightGBM, CatBoost, RealMLP, Optuna, SciPy, Matplotlib, Seaborn, and Kaggle.
 
 ## Evaluation
 
-Models are evaluated using cross-validation and out-of-fold predictions. Optimisation steps that depend on model probabilities are performed on held-out predictions rather than in-sample outputs to reduce the risk of optimistic evaluation.
+Models are evaluated with stratified cross-validation and out-of-fold predictions using balanced accuracy. Probability-based post-processing is evaluated on held-out OOF predictions to reduce optimistic estimates.
 
-## Planned Work
-Complete model selection and hyperparameter optimisation.
-Evaluate stacking and blending approaches.
-Refactor repeated notebook logic into reusable Python modules.
+## Final Model Choice
+Although stacking was tested, it did not outperform the simpler tuned LightGBM model with differential-evolution probability weighting. The final submission therefore prioritizes validation performance, simplicity, and robustness over additional ensemble complexity.
 
 
