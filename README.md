@@ -4,7 +4,9 @@ This project develops a tabular machine-learning workflow for classifying astron
 
 The project covers exploratory data analysis, feature engineering, feature-group ablation, model comparison, out-of-fold validation, hyperparameter optimization, probability post-processing, stacking experiments, and Kaggle submission generation.
 
-Kaggle competition: https://www.kaggle.com/competitions/playground-series-s6e6/over## Reproducibility
+Kaggle competition: https://www.kaggle.com/competitions/playground-series-s6e6/over
+
+## Reproducibility
 
 Place the Kaggle competition files in `data/train.csv` and `data/test.csv`, then install the project in editable mode:
 
