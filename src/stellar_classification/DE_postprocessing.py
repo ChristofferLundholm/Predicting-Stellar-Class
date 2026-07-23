@@ -1,7 +1,5 @@
 import numpy as np
 
-#Use already learnt DE weights.
-
 def apply_class_weights_to_probs(probs, weights):
     return np.asarray(probs, dtype=float) * np.asarray(weights, dtype=float)
 

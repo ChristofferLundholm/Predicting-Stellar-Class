@@ -4,13 +4,38 @@ This project develops a tabular machine-learning workflow for classifying astron
 
 The project covers exploratory data analysis, feature engineering, feature-group ablation, model comparison, out-of-fold validation, hyperparameter optimization, probability post-processing, stacking experiments, and Kaggle submission generation.
 
-Kaggle competition: https://www.kaggle.com/competitions/playground-series-s6e6/overview
+Kaggle competition: https://www.kaggle.com/competitions/playground-series-s6e6/over## Reproducibility
 
-## Reproducibility Commands
+Place the Kaggle competition files in `data/train.csv` and `data/test.csv`, then install the project in editable mode:
+
+```powershell
 pip install -e ".[dev]"
+```
+
+Train the final LightGBM pipeline and save the local artifacts:
+
+```powershell
 python -m stellar_classification.train
-python -m stellar_classification.predict --input data/test.csv --output submissions/submission.csv
+```
+
+Generate a Kaggle submission from the saved model, label encoder, and probability weights:
+
+```powershell
+python -m stellar_classification.predict
+```
+
+Optional paths can be overridden from the CLI:
+
+```powershell
+python -m stellar_classification.train --train-path data/train.csv --model-output artifacts/lightgbm_pipeline.joblib
+python -m stellar_classification.predict --input-path data/test.csv --output-path submissions/submission.csv
+```
+
+Run the tests:
+
+```powershell
 pytest
+```
 
 ## Results
 
@@ -40,12 +65,14 @@ A simpler LightGBM baseline with probability weighting achieved:
 ## Project Structure
 
 ```
-├── data/
-├── notebooks/
-│   ├── 01_eda_and_ baseline_model.ipynb
-│   └── 02_model_selection_stacking_and_optimization.ipynb
-├── README.md
-└── requirements.txt
+data/                         Kaggle input files, ignored by git
+notebooks/                    EDA, baseline modeling, HPO, and stacking experiments
+src/stellar_classification/   Reusable preprocessing, training, prediction, and post-processing code
+tests/                        Unit tests for reusable project code
+artifacts/                    Trained model artifacts, ignored by git
+submissions/                  Generated Kaggle submissions, ignored by git
+pyproject.toml                Project metadata, dependencies, and pytest configuration
+README.md                     Project overview and reproduction notes
 ```
 
 ## Methods and Tools
@@ -58,5 +85,11 @@ Models are evaluated with stratified cross-validation and out-of-fold prediction
 
 ## Final Model Choice
 Although stacking was tested, it did not outperform the simpler tuned LightGBM model with differential-evolution probability weighting. The final submission therefore prioritizes validation performance, simplicity, and robustness over additional ensemble complexity.
+
+
+ robustness over additional ensemble complexity.
+
+
+nd robustness over additional ensemble complexity.
 
 
