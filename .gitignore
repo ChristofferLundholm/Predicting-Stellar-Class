@@ -1,6 +1,30 @@
 
+# Local exploration / scratch work
 Early Testing/
+
+# Kaggle data and generated outputs
 data/
+artifacts/
+submissions/
+results/
 *.csv
-notebooks/catboost_info
-basic_attempt_submission.csv
+
+# Model/library training logs
+catboost_info/
+notebooks/catboost_info/
+
+# Python caches and test artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+
+# Notebook checkpoints
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+
+# Virtual environments and local environment files
+.venv/
+venv/
+env/
+.env

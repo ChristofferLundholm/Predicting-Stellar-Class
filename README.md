@@ -6,6 +6,12 @@ The project covers exploratory data analysis, feature engineering, feature-group
 
 Kaggle competition: https://www.kaggle.com/competitions/playground-series-s6e6/overview
 
+## Reproducibility Commands
+pip install -e ".[dev]"
+python -m stellar_classification.train
+python -m stellar_classification.predict --input data/test.csv --output submissions/submission.csv
+pytest
+
 ## Results
 
 The final selected model is a tuned LightGBM classifier with differential-evolution class probability weighting.
