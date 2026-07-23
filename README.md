@@ -86,10 +86,3 @@ Models are evaluated with stratified cross-validation and out-of-fold prediction
 ## Final Model Choice
 Although stacking was tested, it did not outperform the simpler tuned LightGBM model with differential-evolution probability weighting. The final submission therefore prioritizes validation performance, simplicity, and robustness over additional ensemble complexity.
 
-
- robustness over additional ensemble complexity.
-
-
-nd robustness over additional ensemble complexity.
-
-
